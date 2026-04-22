@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do-List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Lista de Tarefas</h1>
         <nav>
-            <a href="">Inicio</a>
-            <a href="">Tarefas</a>
-            <a href="">Contato</a>
+            <a href="#inicio">Inicio</a>
+            <a href="#tarefas">Tarefas</a>
+            <a href="#contato">Contato</a>
         </nav>
     </header>
 
@@ -30,6 +31,12 @@
     <script>
         let tarefas = [];
 
+        function editarTarefa(index){
+            const novoValor = document.getElementById(`edicao-${index}`).value.trim();
+            tarefas[index] = novoValor
+            atualizarLista();
+        }
+
         function adicionarTarefa(){
             const input = document.getElementById('tarefainput');
             const tarefa = input.value.trim();
@@ -43,13 +50,13 @@
             tarefas.splice(index,1)
             atualizarLista();
         }
-
+        id = 1
         function atualizarLista(){
             const lista = document.getElementById("listaTarefas");
             lista.innerHTML = '';
             tarefas.forEach((tarefa, index) => {
                 const li = document.createElement('li');
-                li.innerHTML =`${tarefa} <button onclick="removerTarefa(${index})">Remover</button>`;
+                li.innerHTML =`${tarefa} <button onclick="removerTarefa(${index})">Remover</button><button onclick="editarTarefa(${index})">Editar</button> <input type="text" id="edicao-${index}" placeholder="Inisira o novo valor">`;
                 lista.appendChild(li);
             });
         }
