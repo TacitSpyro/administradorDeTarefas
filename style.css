@@ -6,7 +6,7 @@ body{
 }
 h1{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-bottom: 30%;
+    margin-bottom: 10%;
     width: 100%;
     height: 15%;
     font-size: 400%;
@@ -16,4 +16,20 @@ a{
     font-size: 200%;
     text-decoration: none;
     color: black;
+    margin-right: 2%;
+}
+#vibing{
+    display: flex;
+    width: 30%;
+    align-items: center;
+}
+#snoop{
+    width: 30%;
+}
+#imagens{
+    display: flex;
+    justify-content: center;
+}
+#dedoritos{
+    width: 30%;
 }
