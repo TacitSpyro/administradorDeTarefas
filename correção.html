@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awsome-To-Do-List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Lista de Tarefas</h1>
+        <div id="imagens">
+            <img src="Snoopdoggydogg.webp"id="snoop">
+            <img src="output-onlinegiftools.gif"id="vibing">
+            <img src="2338587_33495.gif" id="dew">
+            <img src="Doritos-PNG-HD-Quality.png" id="dedoritos">
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#tarefas">Tarefas</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <div id="Inicio" class="container">
+        <h2>Adiconar nova tarefa</h2>
+        <div>
+            <input type="text" name="" id="tarefaInput">
+            <button onclick="adicionarTarefa()">Adicionar</button>
+        </div>
+        <ul id="listaTarefas"></ul>
+    </div>
+
+    <footer id="Contato">
+        <p>&copy; 2026 SENAI. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+        let tarefas = [];
+        let editandoIndex = null;
+
+        function adicionarTarefa(){
+            const input = document.getElementById('tarefaInput');
+            const tarefa = input.value.trim();
+            if(tarefa){
+                if(editandoIndex === null){
+                   tarefas.push(tarefa);
+                }else{
+                    tarefas[editandoIndex] = tarefa;
+                    editandoIndex = null;
+                }
+                input.value = '';
+                atualizarLista();
+            }
+        }
+        function removerTarefa(index){
+            tarefas.splice(index, 1);
+            atualizarLista();
+        }
+        function editarTarefa(index){
+            const input = document.getElementById('tarefaInput');
+            input.value = tarefas[index];
+            editandoIndex = index;
+        }
+
+        function atualizarLista(){
+            const lista = document.getElementById('listaTarefas');
+            lista.innerHTML = '';
+            tarefas.forEach((tarefa, index) => {
+                const li = document.createElement('li');
+                li.innerHTML=`${tarefa}
+                    <button onclick="editarTarefa(${index})">Editar</button>
+                    <button onclick="removerTarefa(${index})">Remover</button>`;
+                lista.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
